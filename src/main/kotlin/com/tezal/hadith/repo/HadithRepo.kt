@@ -1,0 +1,10 @@
+package com.tezal.hadith.repo
+
+import com.tezal.hadith.entity.HadithEntity
+import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.stereotype.Repository
+
+@Repository
+interface HadithRepo : JpaRepository<HadithEntity, Long>{
+    fun findAllByCategory_Id(id: Long):List<HadithEntity>
+}
