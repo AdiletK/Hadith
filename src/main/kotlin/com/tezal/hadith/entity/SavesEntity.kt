@@ -6,7 +6,7 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "saves_table")
-class SavesEntity (
+data class SavesEntity (
         @ManyToOne var hadyth: HadithEntity,
         @ManyToOne var user: UserEntity
 ) : BaseEntity() {

@@ -12,6 +12,7 @@ import javax.persistence.*
 @Setter
 @MappedSuperclass
 abstract class BaseEntity {
+
     @Id
     @GeneratedValue
     @Column(name = "id")

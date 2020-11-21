@@ -1,13 +1,13 @@
 package com.tezal.hadith.service
 
-interface BaseService<T> {
-    fun findAll(): List<T>
+interface BaseService<ENTITY> {
+    fun findAll(): List<ENTITY>
 
-    fun create(model: T): T
+    fun create(model: ENTITY): ENTITY
 
-    fun update(model: T): T
+    fun update(model: ENTITY): ENTITY
 
-    fun findById(id: Long): T
+    fun findById(id: Long): ENTITY
 
     fun deleteById(id: Long)
 }
