@@ -7,5 +7,6 @@ data class UserDto(
         val createDate: LocalDateTime,
         val updateDate: LocalDateTime,
         val userName: String,
-        val phone: String
+        val settingId: Long,
+        val loginId: Long
 )

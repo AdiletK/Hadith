@@ -1,6 +1,5 @@
 package com.tezal.hadith.entity
 
-import com.tezal.hadith.model.dto.CategoryDto
 import javax.persistence.Entity
 import javax.persistence.Table
 

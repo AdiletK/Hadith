@@ -1,16 +1,19 @@
 package com.tezal.hadith.controller
 
 import com.tezal.hadith.entity.HadithEntity
+import com.tezal.hadith.enum.StatusList
 import com.tezal.hadith.extensions.toDto
 import com.tezal.hadith.model.HadithModel
 import com.tezal.hadith.model.dto.HadithDto
+import com.tezal.hadith.service.BookService
 import com.tezal.hadith.service.CategoryService
 import com.tezal.hadith.service.HadithService
 import org.springframework.web.bind.annotation.*
+import java.time.LocalDateTime
 
 @RestController
 @RequestMapping("/api/hadith")
-class HadithController(val service: HadithService, val categoryService: CategoryService) {
+class HadithController(val service: HadithService, val categoryService: CategoryService, val bookService: BookService) {
 
     @GetMapping("/findAll")
     fun findAll(): List<HadithDto> {
@@ -33,7 +36,7 @@ class HadithController(val service: HadithService, val categoryService: Category
 
     @PostMapping("/save")
     fun save(@RequestBody model: HadithModel): HadithDto {
-        val newItem = HadithEntity(model.title, model.description, categoryService.findById(model.categoryId))
+        val newItem = HadithEntity(model.title, model.description, categoryService.findById(model.categoryId), model.books.map { bookService.findById(it) }.toSet())
         newItem.status = model.status
         return service.create(newItem).toDto()
     }

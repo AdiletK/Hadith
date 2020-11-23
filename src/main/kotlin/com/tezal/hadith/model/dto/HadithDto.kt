@@ -10,5 +10,6 @@ data class HadithDto(
         val updateDate: LocalDateTime,
         val status: String,
         val categoryId: Long,
-        val categoryName: String
+        val categoryName: String,
+        val books: Set<BookDto>
 )
