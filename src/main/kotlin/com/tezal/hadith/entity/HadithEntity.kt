@@ -1,5 +1,6 @@
 package com.tezal.hadith.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import org.hibernate.annotations.Type
 import javax.persistence.*
 
@@ -11,10 +12,5 @@ data class HadithEntity(
         @Type(type = "org.hibernate.type.TextType")
         var description: String,
         @ManyToOne var category: CategoryEntity,
-        @ManyToMany
-        @JoinTable(
-                name = "hadith_book",
-                joinColumns = [JoinColumn(name = "book_id")],
-                inverseJoinColumns = [JoinColumn(name = "hadith_id")])
-        val books: Set<BookEntity>
+        @ManyToOne var book: BookEntity
 ) : BaseEntity()

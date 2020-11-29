@@ -36,7 +36,7 @@ class HadithController(val service: HadithService, val categoryService: Category
 
     @PostMapping("/save")
     fun save(@RequestBody model: HadithModel): HadithDto {
-        val newItem = HadithEntity(model.title, model.description, categoryService.findById(model.categoryId), model.books.map { bookService.findById(it) }.toSet())
+        val newItem = HadithEntity(model.title, model.description, categoryService.findById(model.categoryId), bookService.findById(model.book))
         newItem.status = model.status
         return service.create(newItem).toDto()
     }

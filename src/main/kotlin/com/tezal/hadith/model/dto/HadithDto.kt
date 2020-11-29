@@ -11,5 +11,4 @@ data class HadithDto(
         val status: String,
         val categoryId: Long,
         val categoryName: String,
-        val books: Set<BookDto>
-)
+        val book: BookDto)

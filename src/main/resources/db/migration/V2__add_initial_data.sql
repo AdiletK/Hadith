@@ -8,19 +8,14 @@ VALUES (1, current_date, 0, current_date, 'Author 1', 'Description .....', 'Book
 insert into book_table(id, create_date, status, update_date, author, description, title)
 VALUES (2, current_date, 0, current_date, 'Author 2', 'Description .....', 'Book 2');
 
-insert into hadith_table(id, create_date, status, update_date, description, title, category_id)
-VALUES (1,current_date, 0, current_date, 'Description .....', 'Hadith 1', 1) ;
-insert into hadith_table(id, create_date, status, update_date, description, title, category_id)
-VALUES (2,current_date, 0, current_date, 'Description .....', 'Hadith 2', 1) ;
-insert into hadith_table(id, create_date, status, update_date, description, title, category_id)
-VALUES (3,current_date, 0, current_date, 'Description .....', 'Hadith 3', 2) ;
-insert into hadith_table(id, create_date, status, update_date, description, title, category_id)
-VALUES (4,current_date, 0, current_date, 'Description .....', 'Hadith 4', 2) ;
-
-insert into hadith_book (book_id, hadith_id)
-values (1, 1);
-insert into hadith_book (book_id, hadith_id)
-values (2, 2);
+insert into hadith_table(id, create_date, status, update_date, description, title, category_id, book_id)
+VALUES (1,current_date, 0, current_date, 'Description .....', 'Hadith 1', 1, 1) ;
+insert into hadith_table(id, create_date, status, update_date, description, title, category_id, book_id)
+VALUES (2,current_date, 0, current_date, 'Description .....', 'Hadith 2', 1, 1) ;
+insert into hadith_table(id, create_date, status, update_date, description, title, category_id, book_id)
+VALUES (3,current_date, 0, current_date, 'Description .....', 'Hadith 3', 2, 2) ;
+insert into hadith_table(id, create_date, status, update_date, description, title, category_id, book_id)
+VALUES (4,current_date, 0, current_date, 'Description .....', 'Hadith 4', 2, 2) ;
 
 insert into login_table (id, create_date, status, update_date, credential, password, type)
 values (1, current_date, 0, current_date, '10.123.323.23.123', '', 0);

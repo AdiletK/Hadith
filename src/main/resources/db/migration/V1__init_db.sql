@@ -1,14 +1,12 @@
 create sequence hibernate_sequence start 1 increment 1;
 create table book_table (id int8 not null, create_date timestamp, status int4, update_date timestamp, author varchar(255), description text, title varchar(255), primary key (id));
 create table category_table (id int8 not null, create_date timestamp, status int4, update_date timestamp, title varchar(255), primary key (id));
-create table hadith_book (book_id int8 not null, hadith_id int8 not null, primary key (book_id, hadith_id));
-create table hadith_table (id int8 not null, create_date timestamp, status int4, update_date timestamp, description text, title varchar(255), category_id int8, primary key (id));
-create table login_table (id int8 not null, create_date timestamp, status int4, update_date timestamp, credential varchar(255), password varchar(255), type  int4, primary key (id));
+create table hadith_table (id int8 not null, create_date timestamp, status int4, update_date timestamp, description text, title varchar(255), book_id int8, category_id int8, primary key (id));
+create table login_table (id int8 not null, create_date timestamp, status int4, update_date timestamp, credential varchar(255), password varchar(255), type int4, primary key (id));
 create table saves_table (id int8 not null, create_date timestamp, status int4, update_date timestamp, hadyth_id int8, user_id int8, primary key (id));
 create table setting_table (id int8 not null, create_date timestamp, status int4, update_date timestamp, count_of_notif int4 not null, is_notif_enabled boolean not null, primary key (id));
 create table user_table (id int8 not null, create_date timestamp, status int4, update_date timestamp, user_name varchar(255), login_entity_id int8, setting_entity_id int8, primary key (id));
-alter table hadith_book add constraint FKiddvv8t72vjydjqofma7m3wrp foreign key (hadith_id) references book_table;
-alter table hadith_book add constraint FKnvb3typu17jmn5dmqq509vclv foreign key (book_id) references hadith_table;
+alter table hadith_table add constraint FKfpghlafoaf9lwfmy869q9fnvt foreign key (book_id) references book_table;
 alter table hadith_table add constraint FKn8j1ubrvgmqnmf8wghpi4hiyv foreign key (category_id) references category_table;
 alter table saves_table add constraint FKhd7y1oiytyai16t43e3ifcpba foreign key (hadyth_id) references hadith_table;
 alter table saves_table add constraint FKrlfnomx3qftvbg8bje7ef7a11 foreign key (user_id) references user_table;

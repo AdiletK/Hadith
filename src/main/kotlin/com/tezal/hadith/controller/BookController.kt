@@ -25,14 +25,14 @@ class BookController(val service: BookService) {
 
     @PostMapping("/save")
     fun save(@RequestBody model: BookDto): BookDto {
-        val newItem = BookEntity(model.title, model.description, model.author, emptySet())
+        val newItem = BookEntity(model.title, model.description, model.author)
         newItem.status = StatusList.ENABLED
         return service.create(newItem).toDto()
     }
 
     @PutMapping("/update/{id}")
     fun update(@PathVariable id: Long, @RequestBody model: BookDto): BookDto {
-        val newItem = BookEntity(model.title, model.description, model.author, emptySet())
+        val newItem = BookEntity(model.title, model.description, model.author)
         newItem.id = id
         return service.update(newItem).toDto()
     }
