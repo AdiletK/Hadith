@@ -13,7 +13,7 @@ import com.tezal.hadith.model.dto.UserDto
 fun HadithEntity.toDto() = HadithDto(
         id!!, title, description,
         createDate, updateDate, status.name,
-        category.id!!, category.title, book.toDto()
+        category.id!!, category.title, book.id!!, book.title
 )
 
 
