@@ -9,4 +9,6 @@ data class UserDto(
         val userName: String,
         val settingId: Long,
         val loginId: Long
-)
+){
+    constructor()
+}

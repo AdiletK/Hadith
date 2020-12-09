@@ -13,4 +13,6 @@ data class HadithDto(
         val categoryName: String,
         val bookId: Long,
         val bookTitle: String
-        )
+        ){
+        constructor()
+}
