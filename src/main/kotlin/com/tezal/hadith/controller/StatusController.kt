@@ -1,6 +1,6 @@
 package com.tezal.hadith.controller
 
-import com.tezal.hadith.enum.StatusList
+import com.tezal.hadith.enums.StatusList
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController

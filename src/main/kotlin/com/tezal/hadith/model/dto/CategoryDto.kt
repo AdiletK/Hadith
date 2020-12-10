@@ -8,6 +8,4 @@ data class CategoryDto(
         val createDate: LocalDateTime,
         val updateDate: LocalDateTime,
         val status: String
-        ){
-        constructor()
-}
+        )

@@ -1,6 +1,6 @@
 package com.tezal.hadith.entity
 
-import com.tezal.hadith.enum.StatusList
+import com.tezal.hadith.enums.StatusList
 import lombok.Getter
 import lombok.Setter
 import org.hibernate.annotations.CreationTimestamp

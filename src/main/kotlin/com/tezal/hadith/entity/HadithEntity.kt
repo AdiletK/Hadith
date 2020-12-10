@@ -1,8 +1,10 @@
 package com.tezal.hadith.entity
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import org.hibernate.annotations.Type
-import javax.persistence.*
+import javax.persistence.Entity
+import javax.persistence.Lob
+import javax.persistence.ManyToOne
+import javax.persistence.Table
 
 @Entity
 @Table(name = "hadith_table")

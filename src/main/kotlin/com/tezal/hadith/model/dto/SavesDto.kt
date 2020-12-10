@@ -10,6 +10,4 @@ data class SavesDto(
         val hadithName: String,
         val userId: Long,
         val userName: String
-){
-    constructor()
-}
+)

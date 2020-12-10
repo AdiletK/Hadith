@@ -1,7 +1,7 @@
 package com.tezal.hadith.controller
 
 import com.tezal.hadith.entity.BookEntity
-import com.tezal.hadith.enum.StatusList
+import com.tezal.hadith.enums.StatusList
 import com.tezal.hadith.extensions.toDto
 import com.tezal.hadith.model.dto.BookDto
 import com.tezal.hadith.service.BookService

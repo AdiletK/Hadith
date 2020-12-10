@@ -1,6 +1,6 @@
 package com.tezal.hadith.entity
 
-import com.tezal.hadith.enum.LoginTypeList
+import com.tezal.hadith.enums.LoginTypeList
 import javax.persistence.Entity
 import javax.persistence.Table
 

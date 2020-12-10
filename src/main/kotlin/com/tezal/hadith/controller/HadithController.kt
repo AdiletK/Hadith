@@ -1,7 +1,6 @@
 package com.tezal.hadith.controller
 
 import com.tezal.hadith.entity.HadithEntity
-import com.tezal.hadith.enum.StatusList
 import com.tezal.hadith.extensions.toDto
 import com.tezal.hadith.model.HadithModel
 import com.tezal.hadith.model.dto.HadithDto
@@ -9,7 +8,6 @@ import com.tezal.hadith.service.BookService
 import com.tezal.hadith.service.CategoryService
 import com.tezal.hadith.service.HadithService
 import org.springframework.web.bind.annotation.*
-import java.time.LocalDateTime
 
 @RestController
 @RequestMapping("/api/hadith")
