@@ -22,7 +22,7 @@ abstract class BaseController<ENTITY : BaseEntity>(private var service: BaseServ
         return service.create(entity)
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     fun update(@PathVariable id: Long, @RequestBody entity: ENTITY): ENTITY {
         entity.id = id
         return service.update(entity)

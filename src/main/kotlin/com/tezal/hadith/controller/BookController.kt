@@ -36,5 +36,9 @@ class BookController(val service: BookService) {
         newItem.id = id
         return service.update(newItem).toDto()
     }
+    @DeleteMapping("/delete/{id}")
+    fun delete(@PathVariable id: Long){
+        service.deleteById(id)
+    }
 
 }

@@ -34,7 +34,7 @@ class HadithController(val service: HadithService, val categoryService: Category
 
     @PostMapping("/save")
     fun save(@RequestBody model: HadithModel): HadithDto {
-        val newItem = HadithEntity(model.title, model.description, categoryService.findById(model.categoryId), bookService.findById(model.book))
+        val newItem = HadithEntity(model.title, model.description, categoryService.findById(model.categoryId), bookService.findById(model.bookId))
         newItem.status = model.status
         return service.create(newItem).toDto()
     }
@@ -42,6 +42,10 @@ class HadithController(val service: HadithService, val categoryService: Category
     @PutMapping("/update/{id}")
     fun update(@PathVariable id: Long, @RequestBody model: HadithModel): HadithDto {
         return service.update(convert(id, model)).toDto()
+    }
+    @DeleteMapping("/delete/{id}")
+    fun delete(@PathVariable id: Long){
+        service.deleteById(id)
     }
 
     private fun convert(id: Long, model: HadithModel): HadithEntity {
