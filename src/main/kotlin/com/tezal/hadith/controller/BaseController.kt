@@ -22,10 +22,14 @@ abstract class BaseController<ENTITY : BaseEntity>(private var service: BaseServ
         return service.create(entity)
     }
 
-    @PutMapping("/update/{id}")
+    @PostMapping("/update/{id}")
     fun update(@PathVariable id: Long, @RequestBody entity: ENTITY): ENTITY {
         entity.id = id
         return service.update(entity)
+    }
+    @DeleteMapping("delete/{id}")
+    fun delete(@PathVariable id: Long){
+        service.deleteById(id)
     }
 
 }
