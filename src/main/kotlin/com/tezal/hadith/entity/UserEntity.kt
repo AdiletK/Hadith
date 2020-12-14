@@ -8,8 +8,8 @@ import javax.persistence.*
 data class UserEntity(
         var userName: String,
         var password: String,
-        @ManyToOne var settingEntity: SettingEntity,
-        @ManyToOne var loginEntity: LoginEntity,
+        @ManyToOne var settingEntity: SettingEntity?,
+        @ManyToOne var loginEntity: LoginEntity?,
         @ElementCollection(fetch = FetchType.EAGER)
         var roles: MutableList<RoleList>
 ) : BaseEntity() {

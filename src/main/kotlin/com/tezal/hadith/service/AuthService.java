@@ -4,7 +4,7 @@ import com.tezal.hadith.entity.UserEntity;
 import com.tezal.hadith.enums.RoleList;
 import com.tezal.hadith.enums.StatusList;
 import com.tezal.hadith.exception.CustomException;
-import com.tezal.hadith.model.dto.UserDto;
+//import com.tezal.hadith.model.dto.UserDto;
 import com.tezal.hadith.repo.UserRepo;
 import com.tezal.hadith.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,15 +42,15 @@ public class AuthService {
     }
   }
 
-  public String signUp(UserDto userDto){
-    UserEntity user = new UserEntity();
-    user.setUserName(userDto.getUserName());
-    user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-    user.setStatus(StatusList.ENABLED);
-    user.setRoles(Collections.singletonList(RoleList.ROLE_CLIENT));
-    userRepository.save(user);
-    return jwtTokenProvider.createToken(user.getUserName(), user.getRoles());
-  }
+//  public String signUp(UserDto userDto){
+//    UserEntity user = new UserEntity();
+//    user.setUserName(userDto.getUserName());
+//    user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+//    user.setStatus(StatusList.ENABLED);
+//    user.setRoles(Collections.singletonList(RoleList.ROLE_CLIENT));
+//    userRepository.save(user);
+//    return jwtTokenProvider.createToken(user.getUserName(), user.getRoles());
+//  }
 
   public String refresh(String username) {
     return jwtTokenProvider.createToken(username, userRepository.findByUserName(username).getRoles());
