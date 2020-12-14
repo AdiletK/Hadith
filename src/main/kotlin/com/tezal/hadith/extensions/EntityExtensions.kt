@@ -25,7 +25,7 @@ fun SavesEntity.toDto() = SavesDto(
 
 fun UserEntity.toDto() = UserDto(
         id!!, createDate, updateDate, userName, password,
-        settingEntity.id!!, loginEntity.id!!
+        settingEntity?.id, loginEntity?.id
 )
 
 fun BookEntity.toDto() = BookDto (

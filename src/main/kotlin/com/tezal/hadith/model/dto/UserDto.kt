@@ -8,6 +8,6 @@ data class UserDto(
         val updateDate: LocalDateTime,
         var userName: String,
         var password: String,
-        val settingId: Long,
-        val loginId: Long
+        val settingId: Long?,
+        val loginId: Long?
 )
