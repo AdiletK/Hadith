@@ -14,8 +14,8 @@ class AuthController(private val authService: AuthService) {
         return authService.signin(username, password)
     }
 
-    @PostMapping("/signup")
-    fun signUP(@RequestBody userDto: UserDto?): String {
-        return authService.signUp(userDto)
-    }
+//    @PostMapping("/signup")
+//    fun signUP(@RequestBody userDto: UserDto?): String {
+//        return authService.signUp(userDto)
+//    }
 }
