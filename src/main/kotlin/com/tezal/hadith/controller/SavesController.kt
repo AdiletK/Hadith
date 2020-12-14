@@ -7,6 +7,7 @@ import com.tezal.hadith.model.dto.SavesDto
 import com.tezal.hadith.service.HadithService
 import com.tezal.hadith.service.SavesService
 import com.tezal.hadith.service.UserService
+import org.springframework.security.access.annotation.Secured
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -39,6 +40,7 @@ class SavesController(val service: SavesService,
         return service.findById(id).toDto()
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("/save")
     fun save(@RequestBody model: SavesModel): SavesDto {
         val newItem = SavesEntity(hadithService.findById(model.hadithId), userService.findById(model.userId))
@@ -46,6 +48,7 @@ class SavesController(val service: SavesService,
         return service.create(newItem).toDto()
     }
 
+    @Secured("ROLE_ADMIN")
     @PutMapping("/update/{id}")
     fun update(@PathVariable id: Long, @RequestBody model: SavesModel): SavesDto {
         val item = service.findById(id)
