@@ -32,6 +32,7 @@ class WebSecurityConfig(private val jwtTokenProvider: JwtTokenProvider) : WebSec
                 .antMatchers("/api/hadith/findAll").permitAll()
                 .antMatchers("/api/category/findAll").permitAll()
                 .antMatchers("/api/book/findAll").permitAll()
+                .antMatchers("/api/status/findAll").permitAll()
                 .antMatchers("/api/hadith/findByCatId/**").permitAll()
                 .antMatchers("/api/hadith/findById/**").permitAll()
                 .antMatchers("/api/category/findById/**").permitAll()
