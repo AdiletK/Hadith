@@ -31,7 +31,7 @@ class AuthService {
             val (_, _, _, _, roles) = userRepository!!.findByUserName(username!!)
             jwtTokenProvider!!.createToken(username, roles)
         } catch (e: AuthenticationException) {
-            throw CustomException("Invalid username/password supplied", HttpStatus.UNPROCESSABLE_ENTITY)
+                throw RuntimeException("Invalid username/password supplied")
         }
     }
 
