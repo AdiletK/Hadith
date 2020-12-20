@@ -1,4 +1,4 @@
-package com.tezal.hadith.controller
+package com.tezal.hadith.controller.statics
 
 import com.tezal.hadith.enums.StatusList
 import org.springframework.web.bind.annotation.GetMapping

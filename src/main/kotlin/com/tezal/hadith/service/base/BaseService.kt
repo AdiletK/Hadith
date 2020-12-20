@@ -1,4 +1,4 @@
-package com.tezal.hadith.service
+package com.tezal.hadith.service.base
 
 interface BaseService<ENTITY> {
     fun findAll(): List<ENTITY>

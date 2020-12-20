@@ -1,10 +1,10 @@
-package com.tezal.hadith.controller
+package com.tezal.hadith.controller.common
 
 import com.tezal.hadith.entity.BookEntity
 import com.tezal.hadith.enums.StatusList
 import com.tezal.hadith.extensions.toDto
 import com.tezal.hadith.model.dto.BookDto
-import com.tezal.hadith.service.BookService
+import com.tezal.hadith.service.common.BookService
 import org.springframework.security.access.annotation.Secured
 import org.springframework.web.bind.annotation.*
 

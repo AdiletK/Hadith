@@ -1,19 +1,14 @@
 package com.tezal.hadith.extensions
 
-import com.tezal.hadith.entity.BookEntity
-import com.tezal.hadith.entity.HadithEntity
-import com.tezal.hadith.entity.SavesEntity
-import com.tezal.hadith.entity.UserEntity
-import com.tezal.hadith.model.dto.BookDto
-import com.tezal.hadith.model.dto.HadithDto
-import com.tezal.hadith.model.dto.SavesDto
-import com.tezal.hadith.model.dto.UserDto
+import com.tezal.hadith.entity.*
+import com.tezal.hadith.model.dto.*
 
 
 fun HadithEntity.toDto() = HadithDto(
         id!!, title, description,
-        createDate, updateDate, status.name,
-        category.id!!, category.title, book.id!!, book.title
+        status.name, category.id!!,
+        category.title, book.id!!, book.title,
+        sources?.map { it.toDto() }
 )
 
 
@@ -31,3 +26,5 @@ fun UserEntity.toDto() = UserDto(
 fun BookEntity.toDto() = BookDto (
         id!!, title, description, author
 )
+
+fun SourceEntity.toDto() = SourceDto (id!!, title)

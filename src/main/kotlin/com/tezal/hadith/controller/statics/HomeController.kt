@@ -1,4 +1,4 @@
-package com.tezal.hadith.controller
+package com.tezal.hadith.controller.statics
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController

@@ -27,17 +27,19 @@ class WebSecurityConfig(private val jwtTokenProvider: JwtTokenProvider) : WebSec
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
         // Entry points
-        http.authorizeRequests() //
-                .antMatchers("/api/auth/signin").permitAll() //
-                .antMatchers("/api/auth/signup").permitAll() //
+        http.authorizeRequests()
+                .antMatchers("/api/auth/signin").permitAll()
+                .antMatchers("/api/auth/signup").permitAll()
                 .antMatchers("/api/hadith/findAll").permitAll()
                 .antMatchers("/api/category/findAll").permitAll()
                 .antMatchers("/api/book/findAll").permitAll()
                 .antMatchers("/api/status/findAll").permitAll()
+                .antMatchers("/api/source/findAll").permitAll()
                 .antMatchers("/api/hadith/findByCatId/**").permitAll()
                 .antMatchers("/api/hadith/findById/**").permitAll()
                 .antMatchers("/api/category/findById/**").permitAll()
                 .antMatchers("/api/book/findById/**").permitAll()
+                .antMatchers("/api/source/findById/**").permitAll()
 //                .antMatchers("/api/**").permitAll() // Disallow everything else..
                 .anyRequest().authenticated()
 

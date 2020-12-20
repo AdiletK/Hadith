@@ -1,9 +1,8 @@
-package com.tezal.hadith.controller
+package com.tezal.hadith.controller.base
 
 import com.tezal.hadith.entity.BaseEntity
-import com.tezal.hadith.service.BaseService
+import com.tezal.hadith.service.base.BaseService
 import org.springframework.security.access.annotation.Secured
-import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 import javax.persistence.MappedSuperclass
 
@@ -16,7 +15,6 @@ abstract class BaseController<ENTITY : BaseEntity>(private var service: BaseServ
         return service.findAll()
     }
 
-    @Secured("ROLE_ANONYMOUS")
     @GetMapping("/findById/{id}")
     fun findById(@PathVariable id: Long): ENTITY {
         return service.findById(id)
@@ -36,7 +34,7 @@ abstract class BaseController<ENTITY : BaseEntity>(private var service: BaseServ
     }
 
     @Secured("ROLE_ADMIN")
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     fun delete(@PathVariable id: Long){
         service.deleteById(id)
     }

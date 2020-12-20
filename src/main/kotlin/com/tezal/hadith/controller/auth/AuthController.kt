@@ -1,8 +1,8 @@
-package com.tezal.hadith.controller
+package com.tezal.hadith.controller.auth
 
 import com.tezal.hadith.model.auth.AuthRequest
 import com.tezal.hadith.model.auth.AuthResponse
-import com.tezal.hadith.service.AuthService
+import com.tezal.hadith.service.auth.AuthService
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping

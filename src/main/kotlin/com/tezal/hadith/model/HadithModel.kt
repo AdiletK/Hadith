@@ -7,5 +7,6 @@ data class HadithModel(
         val description: String,
         val title: String,
         val status: StatusList,
-        val bookId: Long
+        val bookId: Long,
+        val sourcesId: List<Long>?
 )

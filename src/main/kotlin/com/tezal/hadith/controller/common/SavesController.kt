@@ -1,12 +1,12 @@
-package com.tezal.hadith.controller
+package com.tezal.hadith.controller.common
 
 import com.tezal.hadith.entity.SavesEntity
 import com.tezal.hadith.extensions.toDto
 import com.tezal.hadith.model.SavesModel
 import com.tezal.hadith.model.dto.SavesDto
-import com.tezal.hadith.service.HadithService
-import com.tezal.hadith.service.SavesService
-import com.tezal.hadith.service.UserService
+import com.tezal.hadith.service.common.HadithService
+import com.tezal.hadith.service.common.SavesService
+import com.tezal.hadith.service.common.UserService
 import org.springframework.security.access.annotation.Secured
 import org.springframework.web.bind.annotation.*
 

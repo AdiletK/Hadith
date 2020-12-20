@@ -1,4 +1,4 @@
-package com.tezal.hadith.service
+package com.tezal.hadith.service.auth
 
 import com.tezal.hadith.exception.CustomException
 import com.tezal.hadith.repo.UserRepo

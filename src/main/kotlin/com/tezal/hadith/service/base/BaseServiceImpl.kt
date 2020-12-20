@@ -1,4 +1,4 @@
-package com.tezal.hadith.service
+package com.tezal.hadith.service.base
 
 import com.tezal.hadith.entity.BaseEntity
 import org.springframework.data.jpa.repository.JpaRepository

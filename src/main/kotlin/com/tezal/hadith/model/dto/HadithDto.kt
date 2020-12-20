@@ -1,16 +1,13 @@
 package com.tezal.hadith.model.dto
 
-import java.time.LocalDateTime
-
 data class HadithDto(
         val id: Long,
         val title: String,
         val description: String,
-        val createDate: LocalDateTime,
-        val updateDate: LocalDateTime,
         val status: String,
         val categoryId: Long,
         val categoryName: String,
         val bookId: Long,
-        val bookTitle: String
+        val bookTitle: String,
+        val sources: List<SourceDto>?
         )

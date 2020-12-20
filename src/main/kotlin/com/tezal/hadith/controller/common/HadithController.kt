@@ -1,18 +1,20 @@
-package com.tezal.hadith.controller
+package com.tezal.hadith.controller.common
 
 import com.tezal.hadith.entity.HadithEntity
 import com.tezal.hadith.extensions.toDto
 import com.tezal.hadith.model.HadithModel
 import com.tezal.hadith.model.dto.HadithDto
-import com.tezal.hadith.service.BookService
-import com.tezal.hadith.service.CategoryService
-import com.tezal.hadith.service.HadithService
+import com.tezal.hadith.service.common.BookService
+import com.tezal.hadith.service.common.CategoryService
+import com.tezal.hadith.service.common.HadithService
+import com.tezal.hadith.service.common.SourceService
 import org.springframework.security.access.annotation.Secured
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/hadith")
-class HadithController(val service: HadithService, val categoryService: CategoryService, val bookService: BookService) {
+class HadithController(val service: HadithService, val categoryService: CategoryService,
+                       val bookService: BookService, val sourceService: SourceService) {
 
     @GetMapping("/findAll")
     fun findAll(): List<HadithDto> {
@@ -36,7 +38,10 @@ class HadithController(val service: HadithService, val categoryService: Category
     @Secured("ROLE_ADMIN")
     @PostMapping("/save")
     fun save(@RequestBody model: HadithModel): HadithDto {
-        val newItem = HadithEntity(model.title, model.description, categoryService.findById(model.categoryId), bookService.findById(model.bookId))
+        val newItem = HadithEntity(model.title, model.description,
+                categoryService.findById(model.categoryId),
+                bookService.findById(model.bookId),
+                model.sourcesId?.map { sourceService.findById(it) })
         newItem.status = model.status
         return service.create(newItem).toDto()
     }
@@ -55,6 +60,8 @@ class HadithController(val service: HadithService, val categoryService: Category
     private fun convert(id: Long, model: HadithModel): HadithEntity {
         val item = service.findById(id)
         item.category = categoryService.findById(model.categoryId)
+        item.book = bookService.findById(model.bookId)
+        item.sources = model.sourcesId?.map { sourceService.findById(it) }
         item.description = model.description
         item.title = model.title
         item.status = model.status

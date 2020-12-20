@@ -1,8 +1,9 @@
-package com.tezal.hadith.service
+package com.tezal.hadith.service.common
 
 import com.tezal.hadith.entity.SavesEntity
 import com.tezal.hadith.model.SavesModel
 import com.tezal.hadith.repo.SavesRepo
+import com.tezal.hadith.service.base.BaseServiceImpl
 import org.springframework.stereotype.Service
 
 @Service
