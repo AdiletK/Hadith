@@ -35,11 +35,13 @@ class WebSecurityConfig(private val jwtTokenProvider: JwtTokenProvider) : WebSec
                 .antMatchers("/api/book/findAll").permitAll()
                 .antMatchers("/api/status/findAll").permitAll()
                 .antMatchers("/api/source/findAll").permitAll()
+                .antMatchers("/api/language/findAll").permitAll()
                 .antMatchers("/api/hadith/findByCatId/**").permitAll()
                 .antMatchers("/api/hadith/findById/**").permitAll()
                 .antMatchers("/api/category/findById/**").permitAll()
                 .antMatchers("/api/book/findById/**").permitAll()
                 .antMatchers("/api/source/findById/**").permitAll()
+                .antMatchers("/api/language/findById/**").permitAll()
 //                .antMatchers("/api/**").permitAll() // Disallow everything else..
                 .anyRequest().authenticated()
 
