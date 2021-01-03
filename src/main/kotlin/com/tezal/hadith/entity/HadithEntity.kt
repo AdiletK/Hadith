@@ -1,6 +1,5 @@
 package com.tezal.hadith.entity
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import org.hibernate.annotations.Type
 import javax.persistence.*
 
@@ -14,6 +13,6 @@ data class HadithEntity(
         @ManyToOne var category: CategoryEntity,
         @ManyToOne var book: BookEntity,
         @ManyToMany(mappedBy = "hadiths")
-        @JsonIgnoreProperties("hadiths")
-        var sources: List<SourceEntity>? = mutableListOf()
+        var sources: List<SourceEntity>?,
+        @ManyToOne var language: LanguageEntity?
 ) : BaseEntity()

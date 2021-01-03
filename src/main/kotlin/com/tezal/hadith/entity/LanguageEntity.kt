@@ -2,14 +2,11 @@ package com.tezal.hadith.entity
 
 import javax.persistence.Column
 import javax.persistence.Entity
-import javax.persistence.ManyToOne
 import javax.persistence.Table
 
 @Entity
-@Table(name = "category_table")
-data class CategoryEntity(
+@Table(name = "lang_table")
+data class LanguageEntity(
         @Column(unique = true)
-        var title: String,
-        @ManyToOne
-        var language: LanguageEntity
+        var title : String
 ) : BaseEntity()

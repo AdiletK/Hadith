@@ -4,17 +4,16 @@ import com.tezal.hadith.entity.HadithEntity
 import com.tezal.hadith.extensions.toDto
 import com.tezal.hadith.model.HadithModel
 import com.tezal.hadith.model.dto.HadithDto
-import com.tezal.hadith.service.common.BookService
-import com.tezal.hadith.service.common.CategoryService
-import com.tezal.hadith.service.common.HadithService
-import com.tezal.hadith.service.common.SourceService
+import com.tezal.hadith.service.common.*
 import org.springframework.security.access.annotation.Secured
 import org.springframework.web.bind.annotation.*
+import java.util.*
 
 @RestController
 @RequestMapping("/api/hadith")
 class HadithController(val service: HadithService, val categoryService: CategoryService,
-                       val bookService: BookService, val sourceService: SourceService) {
+                       val bookService: BookService, val sourceService: SourceService,
+                       val languageService: LanguageService) {
 
     @GetMapping("/findAll")
     fun findAll(): List<HadithDto> {
@@ -35,13 +34,22 @@ class HadithController(val service: HadithService, val categoryService: Category
         return service.findById(id).toDto()
     }
 
+    @GetMapping("/findByLangId/{id}")
+    fun findByLangId(@PathVariable id: Long) : List<HadithDto>{
+        return service.findByLang(id);
+    }
+    @GetMapping("/findByLangCode/{code}")
+    fun findByLangCode(@PathVariable code: String) : List<HadithDto>{
+        return service.findByLang(code);
+    }
+
     @Secured("ROLE_ADMIN")
     @PostMapping("/save")
     fun save(@RequestBody model: HadithModel): HadithDto {
         val newItem = HadithEntity(model.title, model.description,
                 categoryService.findById(model.categoryId),
                 bookService.findById(model.bookId),
-                model.sourcesId?.map { sourceService.findById(it) })
+                model.sourcesId?.map { sourceService.findById(it) }, languageService.findById(model.langId))
         newItem.status = model.status
         return service.create(newItem).toDto()
     }
@@ -51,9 +59,10 @@ class HadithController(val service: HadithService, val categoryService: Category
     fun update(@PathVariable id: Long, @RequestBody model: HadithModel): HadithDto {
         return service.update(convert(id, model)).toDto()
     }
+
     @Secured("ROLE_ADMIN")
     @DeleteMapping("/delete/{id}")
-    fun delete(@PathVariable id: Long){
+    fun delete(@PathVariable id: Long) {
         service.deleteById(id)
     }
 
@@ -65,6 +74,7 @@ class HadithController(val service: HadithService, val categoryService: Category
         item.description = model.description
         item.title = model.title
         item.status = model.status
+        item.language = languageService.findById(model.langId)
         return item
     }
 }

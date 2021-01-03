@@ -1,6 +1,5 @@
 package com.tezal.hadith.entity
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.persistence.*
 
 @Entity
@@ -8,10 +7,10 @@ import javax.persistence.*
 data class SourceEntity(
         @Column(unique = true)
          var title : String,
-        @ManyToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+        @ManyToMany
         @JoinTable(name = "source_hadith",
                 joinColumns = [JoinColumn(name = "source_id")],
                 inverseJoinColumns = [JoinColumn(name = "hadith_id")])
-        @JsonIgnoreProperties("sources")
-        var hadiths: List<HadithEntity> = mutableListOf()
+        var hadiths: List<HadithEntity>,
+        @ManyToOne val language: LanguageEntity?
 ) : BaseEntity()

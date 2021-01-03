@@ -11,4 +11,5 @@ data class BookEntity(
         @Type(type = "org.hibernate.type.TextType")
         val description: String,
         val author: String,
+        @ManyToOne val language: LanguageEntity?
 ) : BaseEntity()

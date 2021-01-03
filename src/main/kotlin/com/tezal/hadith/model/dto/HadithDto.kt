@@ -9,5 +9,8 @@ data class HadithDto(
         val categoryName: String,
         val bookId: Long,
         val bookTitle: String,
-        val sources: List<SourceDto>?
+        val sources: List<SourceDto>?,
+        val langTitle: String?,
+        val langId: Long?,
+        val sourcesId: List<Long>
         )

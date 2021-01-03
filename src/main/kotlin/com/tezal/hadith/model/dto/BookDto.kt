@@ -5,4 +5,6 @@ data class BookDto(
         val title: String,
         val description: String,
         val author: String,
+        val langId: Long?,
+        val langTitle: String?
 )

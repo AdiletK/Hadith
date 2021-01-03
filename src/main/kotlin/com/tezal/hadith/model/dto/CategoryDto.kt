@@ -1,11 +1,11 @@
 package com.tezal.hadith.model.dto
 
-import java.time.LocalDateTime
+import com.tezal.hadith.enums.StatusList
 
 data class CategoryDto(
         val id: Long,
         val title: String,
-        val createDate: LocalDateTime,
-        val updateDate: LocalDateTime,
-        val status: String
+        val status: StatusList,
+        val langId: Long?,
+        val langTitle: String?
         )

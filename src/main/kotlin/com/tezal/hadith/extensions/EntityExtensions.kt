@@ -8,7 +8,8 @@ fun HadithEntity.toDto() = HadithDto(
         id!!, title, description,
         status.name, category.id!!,
         category.title, book.id!!, book.title,
-        sources?.map { it.toDto() }
+        sources?.map { it.toDto() }, language?.title,
+        language?.id, sources?.map { it.id } as List<Long>
 )
 
 
@@ -24,7 +25,10 @@ fun UserEntity.toDto() = UserDto(
 )
 
 fun BookEntity.toDto() = BookDto (
-        id!!, title, description, author
+        id!!, title, description, author, language?.id,
+        language?.title
 )
 
-fun SourceEntity.toDto() = SourceDto (id!!, title)
+fun SourceEntity.toDto() = SourceDto (id!!, title, language?.id, language?.title)
+
+fun CategoryEntity.toDto() = CategoryDto(id!!, title, status, language.id, language.title)
