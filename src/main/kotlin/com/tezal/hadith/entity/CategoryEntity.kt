@@ -11,5 +11,5 @@ data class CategoryEntity(
         @Column(unique = true)
         var title: String,
         @ManyToOne
-        var language: LanguageEntity
+        var language: LanguageEntity?
 ) : BaseEntity()

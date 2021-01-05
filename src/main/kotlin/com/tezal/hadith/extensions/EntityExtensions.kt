@@ -31,4 +31,4 @@ fun BookEntity.toDto() = BookDto (
 
 fun SourceEntity.toDto() = SourceDto (id!!, title, language?.id, language?.title)
 
-fun CategoryEntity.toDto() = CategoryDto(id!!, title, status, language.id, language.title)
+fun CategoryEntity.toDto() = CategoryDto(id!!, title, status, language?.id, language?.title)
