@@ -26,8 +26,8 @@ class JwtTokenProvider {
     @Value("\${security.jwt.token.secret-key:secret-key}")
     private var secretKey: String? = null
 
-    @Value("\${security.jwt.token.expire-length:3600000}")
-    private val validityInMilliseconds: Long = 3600000 // 1h
+    @Value("\${security.jwt.token.expire-length:36000000}")
+    private val validityInMilliseconds: Long = 36000000 // 10h
 
     @Autowired
     private val myUserDetails: MyUserDetails? = null

@@ -1,13 +1,14 @@
 package com.tezal.hadith.model
 
 import com.tezal.hadith.enums.StatusList
+import com.tezal.hadith.model.dto.HadithTranslateDto
 
 data class HadithModel(
         val categoryId: Long,
-        val description: String,
-        val title: String,
         val status: StatusList,
         val bookId: Long,
         val sourcesId: List<Long>?,
-        val langId: Long
+        val transcript: String?,
+        val imageUrl: String?,
+        val translateDto: List<HadithTranslateDto>
 )

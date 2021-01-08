@@ -4,29 +4,35 @@ import com.tezal.hadith.entity.HadithEntity
 import com.tezal.hadith.extensions.toDto
 import com.tezal.hadith.model.HadithModel
 import com.tezal.hadith.model.dto.HadithDto
+import com.tezal.hadith.model.dto.HadithWithTranslate
 import com.tezal.hadith.service.common.*
 import org.springframework.security.access.annotation.Secured
 import org.springframework.web.bind.annotation.*
-import java.util.*
 
 @RestController
 @RequestMapping("/api/hadith")
 class HadithController(val service: HadithService, val categoryService: CategoryService,
                        val bookService: BookService, val sourceService: SourceService,
-                       val languageService: LanguageService) {
+                       val hadithTranslateService: HadithTranslateService) {
 
     @GetMapping("/findAll")
-    fun findAll(): List<HadithDto> {
-        return service.findAll().map {
-            it.toDto()
+    fun findAll(): List<HadithWithTranslate> {
+        val res: ArrayList<HadithWithTranslate> = ArrayList()
+        val list = service.findAll().map { it.toDto() }
+        list.forEach {
+            res.add(HadithWithTranslate(it, hadithTranslateService.findByHadithId(it.id)))
         }
+        return res
     }
 
     @GetMapping("/findByCatId/{id}")
-    fun findAllByCatId(@PathVariable id: Long): List<HadithDto> {
-        return service.findAllByCatId(id).map {
-            it.toDto()
+    fun findAllByCatId(@PathVariable id: Long): List<HadithWithTranslate> {
+        val res: ArrayList<HadithWithTranslate> = ArrayList()
+        val list = service.findAllByCatId(id).map { it.toDto() }
+        list.forEach {
+            res.add(HadithWithTranslate(it, hadithTranslateService.findByHadithId(it.id)))
         }
+        return res
     }
 
     @GetMapping("/findById/{id}")
@@ -34,24 +40,26 @@ class HadithController(val service: HadithService, val categoryService: Category
         return service.findById(id).toDto()
     }
 
-    @GetMapping("/findByLangId/{id}")
-    fun findByLangId(@PathVariable id: Long) : List<HadithDto>{
-        return service.findByLang(id);
-    }
-    @GetMapping("/findByLangCode/{code}")
-    fun findByLangCode(@PathVariable code: String) : List<HadithDto>{
-        return service.findByLang(code);
-    }
+//    @GetMapping("/findByLangId/{id}")
+//    fun findByLangId(@PathVariable id: Long) : List<HadithDto>{
+////        return service.findByLang(id);
+//    }
+//    @GetMapping("/findByLangCode/{code}")
+//    fun findByLangCode(@PathVariable code: String) : List<HadithDto>{
+//        return service.findByLang(code);
+//    }
 
     @Secured("ROLE_ADMIN")
     @PostMapping("/save")
     fun save(@RequestBody model: HadithModel): HadithDto {
-        val newItem = HadithEntity(model.title, model.description,
+        val newItem = HadithEntity(model.transcript, model.imageUrl,
                 categoryService.findById(model.categoryId),
                 bookService.findById(model.bookId),
-                model.sourcesId?.map { sourceService.findById(it) }, languageService.findById(model.langId))
+                model.sourcesId?.map { sourceService.findById(it) })
         newItem.status = model.status
-        return service.create(newItem).toDto()
+        val saved = service.create(newItem);
+        hadithTranslateService.saveTranslates(model.translateDto, saved.id!!)
+        return saved.toDto()
     }
 
     @Secured("ROLE_ADMIN")
@@ -71,10 +79,9 @@ class HadithController(val service: HadithService, val categoryService: Category
         item.category = categoryService.findById(model.categoryId)
         item.book = bookService.findById(model.bookId)
         item.sources = model.sourcesId?.map { sourceService.findById(it) }
-        item.description = model.description
-        item.title = model.title
+        item.imageUrl = model.imageUrl
+        item.transcipt = model.transcript
         item.status = model.status
-        item.language = languageService.findById(model.langId)
         return item
     }
 }

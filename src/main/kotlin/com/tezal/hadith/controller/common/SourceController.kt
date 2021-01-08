@@ -3,7 +3,6 @@ package com.tezal.hadith.controller.common
 import com.tezal.hadith.entity.SourceEntity
 import com.tezal.hadith.extensions.toDto
 import com.tezal.hadith.model.dto.SourceDto
-import com.tezal.hadith.service.common.HadithService
 import com.tezal.hadith.service.common.LanguageService
 import com.tezal.hadith.service.common.SourceService
 import org.springframework.security.access.annotation.Secured
@@ -13,8 +12,7 @@ import java.util.*
 @RestController
 @RequestMapping("/api/source")
 class SourceController(val service: SourceService,
-                       val languageService: LanguageService,
-                       val hadithService: HadithService) {
+                       val languageService: LanguageService) {
 
     @GetMapping("/findAll")
     fun findAll(): List<SourceDto> {
@@ -39,13 +37,13 @@ class SourceController(val service: SourceService,
     @Secured("ROLE_ADMIN")
     @PostMapping("/save")
     fun save(@RequestBody dto: SourceDto): SourceDto {
-        return service.create(SourceEntity(dto.title, language = languageService.findById(dto.langId!!), hadiths = Collections.singletonList(hadithService.findById(16L)))).toDto()
+        return service.create(SourceEntity(dto.title, language = languageService.findById(dto.langId!!), hadiths = Collections.emptyList())).toDto()
     }
 
     @Secured("ROLE_ADMIN")
-    @PostMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     fun update(@PathVariable id: Long, @RequestBody dto: SourceDto): SourceDto {
-        val entity = SourceEntity(dto.title, language = languageService.findById(dto.langId!!), hadiths = Collections.singletonList(hadithService.findById(16L)))
+        val entity = SourceEntity(dto.title, language = languageService.findById(dto.langId!!), hadiths = Collections.emptyList())
         entity.id = id
         return service.update(entity).toDto()
     }

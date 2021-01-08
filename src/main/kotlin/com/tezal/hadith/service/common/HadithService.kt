@@ -13,10 +13,10 @@ class HadithService(val repository: HadithRepo) : BaseServiceImpl<HadithEntity>(
         return repository.findAllByCategoryId(id)
     }
 
-    fun findByLang(id: Long): List<HadithDto> {
-        return repository.findAllByLanguageId(id).map { it.toDto() }
-    }
-    fun findByLang(code: String): List<HadithDto> {
-        return repository.findAllByLanguageTitle(code).map { it.toDto() }
-    }
+//    fun findByLang(id: Long): List<HadithDto> {
+//        return repository.findAllByLanguageId(id).map { it.toDto() }
+//    }
+//    fun findByLang(code: String): List<HadithDto> {
+//        return repository.findAllByLanguageTitle(code).map { it.toDto() }
+//    }
 }
