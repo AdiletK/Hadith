@@ -35,7 +35,7 @@ class WebSecurityConfig(private val jwtTokenProvider: JwtTokenProvider) : WebSec
                 .antMatchers("/api/**/findById/**").permitAll()
                 .antMatchers("/api/**/findByLangId/**").permitAll()
                 .antMatchers("/api/**/findByLangCode/**").permitAll()
-                .antMatchers("/api/**").permitAll() // Disallow everything else..
+//                .antMatchers("/api/**").permitAll() // Disallow everything else..
                 .anyRequest().authenticated()
 
         // If a user try to access a resource without having enough permissions
