@@ -72,8 +72,8 @@ class HadithController(val service: HadithService, val categoryService: Category
     @Secured("ROLE_ADMIN")
     @DeleteMapping("/delete/{id}")
     fun delete(@PathVariable id: Long) {
-        service.deleteById(id)
         hadithTranslateService.deleteByHadithId(id)
+        service.deleteById(id)
     }
 
     private fun convert(id: Long, model: HadithModel): HadithEntity {
