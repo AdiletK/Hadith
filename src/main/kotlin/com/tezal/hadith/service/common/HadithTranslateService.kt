@@ -8,6 +8,7 @@ import com.tezal.hadith.repo.HadithTranslateRepo
 import com.tezal.hadith.repo.LanguageRepo
 import com.tezal.hadith.service.base.BaseServiceImpl
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class HadithTranslateService(val repo: HadithTranslateRepo,
@@ -33,6 +34,7 @@ class HadithTranslateService(val repo: HadithTranslateRepo,
         return  repo.findAllByLanguageId(langId)
     }
 
+    @Transactional
     fun deleteByHadithId(id: Long) {
         repo.deleteAllByHadithId(id)
     }
