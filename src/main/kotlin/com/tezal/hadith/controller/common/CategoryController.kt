@@ -36,7 +36,7 @@ class CategoryController(val service: CategoryService, val languageService: Lang
     @PostMapping("/save")
     fun save(@RequestBody model: CategoryDto): CategoryDto {
         val newItem = CategoryEntity(model.title, languageService.findById(model.langId!!))
-        newItem.status = StatusList.ENABLED
+        newItem.status = model.status
         return service.create(newItem).toDto()
     }
 
@@ -45,6 +45,7 @@ class CategoryController(val service: CategoryService, val languageService: Lang
     fun update(@PathVariable id: Long, @RequestBody model: CategoryDto): CategoryDto {
         val newItem = CategoryEntity(model.title, languageService.findById(model.langId!!))
         newItem.id = id
+        newItem.status = model.status
         return service.update(newItem).toDto()
     }
 
