@@ -36,8 +36,9 @@ class HadithController(val service: HadithService, val categoryService: Category
     }
 
     @GetMapping("/findById/{id}")
-    fun findById(@PathVariable id: Long): HadithDto {
-        return service.findById(id).toDto()
+    fun findById(@PathVariable id: Long): HadithWithTranslate {
+        val dto: HadithDto = service.findById(id).toDto()
+        return HadithWithTranslate(dto, hadithTranslateService.findByHadithId(dto.id))
     }
 
 //    @GetMapping("/findByLangId/{id}")
