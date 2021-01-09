@@ -32,4 +32,8 @@ class HadithTranslateService(val repo: HadithTranslateRepo,
     fun findByLangId(langId: Long) : List<HadithTranslateEntity> {
         return  repo.findAllByLanguageId(langId)
     }
+
+    fun deleteByHadithId(id: Long) {
+        repo.deleteAllByHadithId(id)
+    }
 }

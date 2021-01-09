@@ -37,8 +37,8 @@ class HadithController(val service: HadithService, val categoryService: Category
 
     @GetMapping("/findById/{id}")
     fun findById(@PathVariable id: Long): HadithWithTranslate {
-        val dto: HadithDto = service.findById(id).toDto()
-        return HadithWithTranslate(dto, hadithTranslateService.findByHadithId(dto.id))
+        return HadithWithTranslate(service.findById(id).toDto(),
+                hadithTranslateService.findByHadithId(id))
     }
 
 //    @GetMapping("/findByLangId/{id}")
@@ -73,6 +73,7 @@ class HadithController(val service: HadithService, val categoryService: Category
     @DeleteMapping("/delete/{id}")
     fun delete(@PathVariable id: Long) {
         service.deleteById(id)
+        hadithTranslateService.deleteByHadithId(id)
     }
 
     private fun convert(id: Long, model: HadithModel): HadithEntity {

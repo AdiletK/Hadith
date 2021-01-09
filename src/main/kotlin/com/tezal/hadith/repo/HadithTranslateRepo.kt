@@ -7,4 +7,6 @@ interface HadithTranslateRepo: JpaRepository<HadithTranslateEntity, Long> {
     fun findAllByHadithId(id: Long): List<HadithTranslateEntity>
 
     fun findAllByLanguageId(id: Long) : List<HadithTranslateEntity>
+
+    fun deleteAllByHadithId(id: Long)
 }
