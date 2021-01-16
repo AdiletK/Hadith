@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service
 
 @Service
 class HadithService(val repository: HadithRepo) : BaseServiceImpl<HadithEntity>(repository){
-    fun findAllByCatId(id: Long) : List<HadithEntity>{
-        return repository.findAllByCategoryId(id)
-    }
+//    fun findAllByCatId(id: Long) : List<HadithEntity>{
+//        return repository.findAllByCategoryId(id)
+//    }
 
 //    fun findByLang(id: Long): List<HadithDto> {
 //        return repository.findAllByLanguageId(id).map { it.toDto() }

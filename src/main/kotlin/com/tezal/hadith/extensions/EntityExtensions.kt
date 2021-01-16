@@ -6,8 +6,8 @@ import com.tezal.hadith.model.dto.*
 
 fun HadithEntity.toDto() = HadithDto(
         id!!,
-        status.name, category.id!!,
-        category.title, book.id!!, book.title,
+        status.name, categories.map { it.toDto() },
+         book.id!!, book.title,
         sources?.map { it.toDto() },
 )
 

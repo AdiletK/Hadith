@@ -10,7 +10,7 @@ data class HadithEntity(
         @Type(type = "org.hibernate.type.TextType")
         var transcipt: String?,
         var imageUrl : String?,
-        @ManyToOne var category: CategoryEntity,
+        @ManyToMany(mappedBy = "categories") var categories: List<CategoryEntity>,
         @ManyToOne var book: BookEntity,
         @ManyToMany(mappedBy = "hadiths")
         var sources: List<SourceEntity>?

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface HadithRepo : JpaRepository<HadithEntity, Long>{
-    fun findAllByCategoryId(id: Long):List<HadithEntity>
+//    fun findAllByCategoriesId(id: Long):List<HadithEntity>
 }

@@ -2,7 +2,7 @@ package com.tezal.hadith.controller.common
 
 import com.tezal.hadith.entity.HadithEntity
 import com.tezal.hadith.extensions.toDto
-import com.tezal.hadith.model.HadithModel
+import com.tezal.hadith.model.HadithWithTranslateModel
 import com.tezal.hadith.model.dto.HadithDto
 import com.tezal.hadith.model.dto.HadithWithTranslate
 import com.tezal.hadith.service.common.*
@@ -25,15 +25,15 @@ class HadithController(val service: HadithService, val categoryService: Category
         return res
     }
 
-    @GetMapping("/findByCatId/{id}")
-    fun findAllByCatId(@PathVariable id: Long): List<HadithWithTranslate> {
-        val res: ArrayList<HadithWithTranslate> = ArrayList()
-        val list = service.findAllByCatId(id).map { it.toDto() }
-        list.forEach {
-            res.add(HadithWithTranslate(it, hadithTranslateService.findByHadithId(it.id)))
-        }
-        return res
-    }
+//    @GetMapping("/findByCatId/{id}")
+//    fun findAllByCatId(@PathVariable id: Long): List<HadithWithTranslate> {
+//        val res: ArrayList<HadithWithTranslate> = ArrayList()
+//        val list = service.findAllByCatId(id).map { it.toDto() }
+//        list.forEach {
+//            res.add(HadithWithTranslate(it, hadithTranslateService.findByHadithId(it.id)))
+//        }
+//        return res
+//    }
 
     @GetMapping("/findById/{id}")
     fun findById(@PathVariable id: Long): HadithWithTranslate {
@@ -52,22 +52,26 @@ class HadithController(val service: HadithService, val categoryService: Category
 
     @Secured("ROLE_ADMIN")
     @PostMapping("/save")
-    fun save(@RequestBody model: HadithModel): HadithDto {
+    fun save(@RequestBody model: HadithWithTranslateModel): HadithDto {
         val newItem = HadithEntity(model.transcript, model.imageUrl,
-                categoryService.findById(model.categoryId),
+                model.categoriesId.map { categoryService.findById(it) },
                 bookService.findById(model.bookId),
                 model.sourcesId?.map { sourceService.findById(it) })
         newItem.status = model.status
-        val saved = service.create(newItem);
-        hadithTranslateService.saveTranslates(model.translateDto, saved.id!!)
+        val saved = service.create(newItem)
+        if (model.translateDto != null)
+            hadithTranslateService.saveTranslates(model.translateDto, saved.id!!)
         return saved.toDto()
     }
 
     @Secured("ROLE_ADMIN")
     @PutMapping("/update/{id}")
-    fun update(@PathVariable id: Long, @RequestBody model: HadithModel): HadithDto {
+    fun update(@PathVariable id: Long, @RequestBody model: HadithWithTranslateModel): HadithDto {
+        if (model.translateDto != null)
+            hadithTranslateService.saveTranslates(model.translateDto, id)
         return service.update(convert(id, model)).toDto()
     }
+
 
     @Secured("ROLE_ADMIN")
     @DeleteMapping("/delete/{id}")
@@ -76,9 +80,9 @@ class HadithController(val service: HadithService, val categoryService: Category
         service.deleteById(id)
     }
 
-    private fun convert(id: Long, model: HadithModel): HadithEntity {
+    private fun convert(id: Long, model: HadithWithTranslateModel): HadithEntity {
         val item = service.findById(id)
-        item.category = categoryService.findById(model.categoryId)
+        item.categories = model.categoriesId.map { categoryService.findById(it) }
         item.book = bookService.findById(model.bookId)
         item.sources = model.sourcesId?.map { sourceService.findById(it) }
         item.imageUrl = model.imageUrl

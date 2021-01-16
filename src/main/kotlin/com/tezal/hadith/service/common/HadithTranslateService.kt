@@ -22,6 +22,8 @@ class HadithTranslateService(val repo: HadithTranslateRepo,
                     it.title, it.description,
                     languageRepo.getOne(it.langId),
                     hadithRepo.getOne(hadithId))
+            if (it.id != null)
+                entity.id = it.id
             repo.save(entity)
         }
     }
