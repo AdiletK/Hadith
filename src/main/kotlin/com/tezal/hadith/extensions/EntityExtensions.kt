@@ -8,7 +8,7 @@ fun HadithEntity.toDto() = HadithDto(
         id!!,
         status.name, categories.map { it.toDto() },
          book.id!!, book.title,
-        sources?.map { it.toDto() },
+        sources?.map { it.toDto() }, imageUrl, transcipt
 )
 
 

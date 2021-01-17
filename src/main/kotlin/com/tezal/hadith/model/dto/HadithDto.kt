@@ -7,4 +7,6 @@ data class HadithDto(
         val bookId: Long,
         val bookTitle: String,
         val sources: List<SourceDto>?,
+        val imageUrl: String?,
+        val transcript: String?
         )
