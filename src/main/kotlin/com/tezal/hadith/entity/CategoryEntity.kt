@@ -9,9 +9,6 @@ data class CategoryEntity(
         var title: String,
         @ManyToOne
         var language: LanguageEntity?,
-        @ManyToMany
-        @JoinTable(name = "category_hadith",
-                joinColumns = [JoinColumn(name = "category_id")],
-                inverseJoinColumns = [JoinColumn(name = "hadith_id")])
-        var categories: List<HadithEntity>?
+        @ManyToMany(mappedBy = "categories")
+        var hadiths: List<HadithEntity>?,
 ) : BaseEntity()
