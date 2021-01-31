@@ -53,10 +53,7 @@ class HadithController(val service: HadithService, val categoryService: Category
     @Secured("ROLE_ADMIN")
     @PostMapping("/save")
     fun save(@RequestBody model: HadithWithTranslateModel): HadithDto {
-        val newItem = HadithEntity(model.transcript, model.imageUrl,
-                model.categoriesId.map { categoryService.findById(it) },
-                bookService.findById(model.bookId),
-                model.sourcesId?.map { sourceService.findById(it) })
+        val newItem = HadithEntity(model.transcript, model.imageUrl)
         newItem.status = model.status
         val saved = service.create(newItem)
         if (model.translateDto != null)
@@ -82,9 +79,6 @@ class HadithController(val service: HadithService, val categoryService: Category
 
     private fun convert(id: Long, model: HadithWithTranslateModel): HadithEntity {
         val item = service.findById(id)
-        item.categories = model.categoriesId.map { categoryService.findById(it) }
-        item.book = bookService.findById(model.bookId)
-        item.sources = model.sourcesId?.map { sourceService.findById(it) }
         item.imageUrl = model.imageUrl
         item.transcipt = model.transcript
         item.status = model.status

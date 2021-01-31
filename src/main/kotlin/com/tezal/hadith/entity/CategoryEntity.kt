@@ -7,8 +7,9 @@ import javax.persistence.*
 data class CategoryEntity(
         @Column(unique = true)
         var title: String,
-        @ManyToOne
+        @ManyToOne(fetch = FetchType.LAZY)
         var language: LanguageEntity?,
-        @ManyToMany(mappedBy = "categories")
-        var hadiths: List<HadithEntity>?,
-) : BaseEntity()
+) : BaseEntity() {
+    @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY)
+    var hadiths: List<HadithTranslateEntity>? = emptyList()
+}

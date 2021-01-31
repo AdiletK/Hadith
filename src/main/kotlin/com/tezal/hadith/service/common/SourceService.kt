@@ -2,7 +2,9 @@ package com.tezal.hadith.service.common
 
 import com.tezal.hadith.entity.SourceEntity
 import com.tezal.hadith.extensions.toDto
+import com.tezal.hadith.extensions.toMobileDto
 import com.tezal.hadith.model.dto.SourceDto
+import com.tezal.hadith.model.dto.mobile.General
 import com.tezal.hadith.repo.SourceRepo
 import com.tezal.hadith.service.base.BaseServiceImpl
 import org.springframework.stereotype.Service
@@ -15,5 +17,9 @@ class SourceService(val repository: SourceRepo) : BaseServiceImpl<SourceEntity>(
 
     fun findByLangCode(code: String): List<SourceDto> {
         return repository.findAllByLanguageTitle(code).map { it.toDto() }
+    }
+
+    fun findByLangForMobile(code: String): List<General> {
+        return repository.findAllByLanguageTitle(code).map { it.toMobileDto() }
     }
 }

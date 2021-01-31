@@ -37,13 +37,13 @@ class SourceController(val service: SourceService,
     @Secured("ROLE_ADMIN")
     @PostMapping("/save")
     fun save(@RequestBody dto: SourceDto): SourceDto {
-        return service.create(SourceEntity(dto.title, language = languageService.findById(dto.langId!!), hadiths = Collections.emptyList())).toDto()
+        return service.create(SourceEntity(dto.title, language = languageService.findById(dto.langId!!))).toDto()
     }
 
     @Secured("ROLE_ADMIN")
     @PutMapping("/update/{id}")
     fun update(@PathVariable id: Long, @RequestBody dto: SourceDto): SourceDto {
-        val entity = SourceEntity(dto.title, language = languageService.findById(dto.langId!!), hadiths = Collections.emptyList())
+        val entity = SourceEntity(dto.title, language = languageService.findById(dto.langId!!))
         entity.id = id
         return service.update(entity).toDto()
     }

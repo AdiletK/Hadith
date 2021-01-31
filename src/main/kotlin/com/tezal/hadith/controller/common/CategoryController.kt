@@ -35,14 +35,14 @@ class CategoryController(val service: CategoryService, val languageService: Lang
     @Secured("ROLE_ADMIN")
     @PostMapping("/save")
     fun save(@RequestBody model: CategoryDto): CategoryDto {
-        val newItem = CategoryEntity(model.title, languageService.findById(model.langId!!), null)
+        val newItem = CategoryEntity(model.title, languageService.findById(model.langId!!))
         return service.create(newItem).toDto()
     }
 
     @Secured("ROLE_ADMIN")
     @PutMapping("/update/{id}")
     fun update(@PathVariable id: Long, @RequestBody model: CategoryDto): CategoryDto {
-        val newItem = CategoryEntity(model.title, languageService.findById(model.langId!!), null)
+        val newItem = CategoryEntity(model.title, languageService.findById(model.langId!!))
         newItem.id = id
         newItem.status = model.status!!
         return service.update(newItem).toDto()
