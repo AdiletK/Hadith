@@ -30,7 +30,7 @@ class WebSecurityConfig(private val jwtTokenProvider: JwtTokenProvider) : WebSec
         http.authorizeRequests()
                 .antMatchers("/api/auth/signin").permitAll()
                 .antMatchers("/api/auth/signup").permitAll()
-                .antMatchers("/api/**/findAll").permitAll()
+                .antMatchers("/api/**/findAll/**").permitAll()
                 .antMatchers("/api/**/findByCatId/**").permitAll()
                 .antMatchers("/api/**/findById/**").permitAll()
                 .antMatchers("/api/**/findByLangId/**").permitAll()
