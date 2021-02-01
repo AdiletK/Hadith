@@ -25,8 +25,9 @@ class HadithTranslateService(val repo: HadithTranslateRepo,
                     languageRepo.getOne(it.langId),
                     hadithRepo.getOne(hadithId),
                     bookRepo.getOne(it.bookId),
-                    sourceRepo.getOne(it.sourceId)
-            )
+                    null)
+            if (it.sourceId != null)
+                entity.source = sourceRepo.getOne(it.sourceId)
             entity.categories = it.categories.map { categoryRepo.getOne(it) }
             if (it.id != null)
                 entity.id = it.id

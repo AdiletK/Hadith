@@ -13,7 +13,7 @@ data class HadithTranslateEntity(
         @ManyToOne(fetch = FetchType.LAZY) var language: LanguageEntity,
         @ManyToOne(fetch = FetchType.LAZY) var hadith: HadithEntity,
         @ManyToOne var book: BookEntity,
-        @ManyToOne var source: SourceEntity
+        @ManyToOne var source: SourceEntity?
 ) : BaseEntity() {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "hadith_category",
