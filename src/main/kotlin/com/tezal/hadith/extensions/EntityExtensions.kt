@@ -36,4 +36,4 @@ fun CategoryEntity.toMobileDto() = General(id!!, title)
 
 fun HadithTranslateEntity.toDto() = HadithTranslateDto(
         id!!, hadith.id, title, description, language.id!!,
-        language.title, status, book.id!!, source.id!!, categories.map { it.id!! })
+        language.title, status, book.id!!,book.title, source?.id!!, source?.title,  categories.map { it.id!! })
