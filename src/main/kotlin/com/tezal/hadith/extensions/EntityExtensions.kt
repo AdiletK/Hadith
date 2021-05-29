@@ -2,6 +2,7 @@ package com.tezal.hadith.extensions
 
 import com.tezal.hadith.entity.*
 import com.tezal.hadith.model.dto.*
+import com.tezal.hadith.model.dto.mobile.BookMobileDto
 import com.tezal.hadith.model.dto.mobile.General
 
 
@@ -26,7 +27,7 @@ fun BookEntity.toDto() = BookDto(
         language?.title
 )
 
-fun BookEntity.toMobileDto() = General(id!!, title)
+fun BookEntity.toMobileDto() = BookMobileDto(id!!, title, description)
 
 fun SourceEntity.toDto() = SourceDto(id!!, title, language?.id, language?.title)
 fun SourceEntity.toMobileDto() = General(id!!, title)

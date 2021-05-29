@@ -4,6 +4,7 @@ import com.tezal.hadith.entity.BookEntity
 import com.tezal.hadith.extensions.toDto
 import com.tezal.hadith.extensions.toMobileDto
 import com.tezal.hadith.model.dto.BookDto
+import com.tezal.hadith.model.dto.mobile.BookMobileDto
 import com.tezal.hadith.model.dto.mobile.General
 import com.tezal.hadith.repo.BookRepo
 import com.tezal.hadith.service.base.BaseServiceImpl
@@ -20,7 +21,7 @@ class BookService(val repository: BookRepo) : BaseServiceImpl<BookEntity>(reposi
         return repository.findAllByLanguageTitle(code).map { it.toDto() }
     }
 
-    fun findByLangForMobile(code: String): List<General> {
+    fun findByLangForMobile(code: String): List<BookMobileDto> {
         return repository.findAllByLanguageTitle(code).map { it.toMobileDto() }
     }
 }
