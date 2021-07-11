@@ -1,5 +1,6 @@
 package com.tezal.hadith.service.common
 
+import com.tezal.hadith.entity.CategoryEntity
 import com.tezal.hadith.entity.HadithTranslateEntity
 import com.tezal.hadith.extensions.toDto
 import com.tezal.hadith.model.dto.HadithTranslateDto
@@ -51,9 +52,10 @@ class HadithTranslateService(val repo: HadithTranslateRepo,
     fun findByLangTitleAndCategoryId(title: String, categoryId: Long): List<HadithTranslateEntity> {
         val hadith: List<HadithTranslateEntity> =
                 repo.findAllByLanguageTitleOrderByPositionAsc(title.toLowerCase())
-
+        val category: CategoryEntity = categoryRepo.findById(categoryId)
+                .orElseThrow { RuntimeException("Category not found!!!") }
         return hadith.filter {
-            it.categories.contains(categoryId)
+            it.categories.contains(category)
         }
     }
 
