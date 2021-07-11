@@ -30,4 +30,18 @@ class HadithService(val repository: HadithRepo,
         return res;
     }
 
+    fun findByLang(code: String, categoryId: Long): List<HadithMobileApi> {
+        val res: ArrayList<HadithMobileApi> = ArrayList()
+        val translates = translateService.findByLangTitleAndCategoryId(code, categoryId)
+        translates.forEach {
+            val hadith = repository.findById(it.hadith.id!!).get()
+            res.add(HadithMobileApi(
+                    hadith.id!!, it.categories.map { it.id!! },
+                    it.source?.id, it.title,
+                    it.description, hadith.imageUrl, it.position
+            ))
+        }
+        return res;
+    }
+
 }

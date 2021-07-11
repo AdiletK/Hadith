@@ -58,5 +58,10 @@ class GeneralController(val bookService: BookService,
         return hadithService.findByLang(lang)
     }
 
+    @GetMapping("/api/hadith/findAll/{lang}/category/{id}")
+    fun findAllHadithByCategory(@PathVariable lang: String, id: Long): List<HadithMobileApi> {
+        return hadithService.findByLang(lang, id)
+    }
+
 
 }

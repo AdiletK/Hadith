@@ -48,6 +48,15 @@ class HadithTranslateService(val repo: HadithTranslateRepo,
         return repo.findAllByLanguageTitleOrderByPositionAsc(title.toLowerCase())
     }
 
+    fun findByLangTitleAndCategoryId(title: String, categoryId: Long): List<HadithTranslateEntity> {
+        val hadith: List<HadithTranslateEntity> =
+                repo.findAllByLanguageTitleOrderByPositionAsc(title.toLowerCase())
+
+        return hadith.filter {
+            it.categories.contains(categoryId)
+        }
+    }
+
     @Transactional
     fun deleteByHadithId(id: Long) {
         repo.deleteAllByHadithId(id)
