@@ -9,6 +9,8 @@ data class CategoryEntity(
         var title: String,
         @ManyToOne(fetch = FetchType.LAZY)
         var language: LanguageEntity?,
+        @ManyToOne var book: BookEntity,
+        var position: Int
 ) : BaseEntity() {
     @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY)
     var hadiths: List<HadithTranslateEntity>? = emptyList()

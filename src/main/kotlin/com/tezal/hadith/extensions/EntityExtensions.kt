@@ -32,9 +32,9 @@ fun BookEntity.toMobileDto() = BookMobileDto(id!!, title, description)
 fun SourceEntity.toDto() = SourceDto(id!!, title, language?.id, language?.title)
 fun SourceEntity.toMobileDto() = General(id!!, title)
 
-fun CategoryEntity.toDto() = CategoryDto(id!!, title, status, language?.id, language?.title)
+fun CategoryEntity.toDto() = CategoryDto(id!!, title, status, language?.id, language?.title, position, book.id)
 fun CategoryEntity.toMobileDto() = General(id!!, title)
 
 fun HadithTranslateEntity.toDto() = HadithTranslateDto(
         id!!, hadith.id, title, description, language.id!!,
-        language.title, status, book.id!!,book.title, source?.id!!, source?.title,  categories.map { it.id!! })
+        language.title, status, source?.id!!, source?.title,  categories.map { it.id!! }, position)

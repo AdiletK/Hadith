@@ -22,4 +22,8 @@ class CategoryService(val repository: CategoryRepo) : BaseServiceImpl<CategoryEn
     fun findByLangForMobile(code: String): List<General> {
         return repository.findAllByLanguageTitle(code).map { it.toMobileDto() }
     }
+    fun findByLangAndByBookId(code: String, bookId: Long) : List<General>{
+        return repository.findAllByLanguageTitleAndBookIdOrderByPositionAsc(code, bookId)
+                .map { it.toMobileDto() };
+    }
 }

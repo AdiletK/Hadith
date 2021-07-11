@@ -23,8 +23,8 @@ class HadithService(val repository: HadithRepo,
             val hadith = repository.findById(it.hadith.id!!).get()
             res.add(HadithMobileApi(
                     hadith.id!!, it.categories.map { it.id!! },
-                    it.book.id, it.source?.id,
-                    it.title, it.description, hadith.imageUrl
+                    it.source?.id, it.title,
+                    it.description, hadith.imageUrl, it.position
             ))
         }
         return res;

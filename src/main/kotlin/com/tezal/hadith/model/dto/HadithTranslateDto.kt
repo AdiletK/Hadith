@@ -10,9 +10,8 @@ data class HadithTranslateDto(
         val langId: Long,
         val langTitle: String?,
         val status: StatusList,
-        val bookId: Long,
-        val bookTitle: String?,
         val sourceId: Long?,
         val sourceTitle: String?,
-        val categories: List<Long>
+        val categories: List<Long>,
+        val position: Int
 )

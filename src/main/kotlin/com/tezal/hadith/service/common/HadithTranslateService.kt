@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional
 class HadithTranslateService(val repo: HadithTranslateRepo,
                              val hadithRepo: HadithRepo,
                              val languageRepo: LanguageRepo,
-                             val bookRepo: BookRepo,
                              val sourceRepo: SourceRepo,
                              val categoryRepo: CategoryRepo)
     : BaseServiceImpl<HadithTranslateEntity>(repo) {
@@ -24,10 +23,11 @@ class HadithTranslateService(val repo: HadithTranslateRepo,
                     it.title, it.description,
                     languageRepo.getOne(it.langId),
                     hadithRepo.getOne(hadithId),
-                    bookRepo.getOne(it.bookId),
-                    null)
+                    null,
+                    it.position)
             if (it.sourceId != null)
                 entity.source = sourceRepo.getOne(it.sourceId)
+
             entity.categories = it.categories.map { categoryRepo.getOne(it) }
             if (it.id != null)
                 entity.id = it.id
@@ -45,7 +45,7 @@ class HadithTranslateService(val repo: HadithTranslateRepo,
     }
 
     fun findByLangTitle(title: String): List<HadithTranslateEntity> {
-        return repo.findAllByLanguageTitle(title.toLowerCase())
+        return repo.findAllByLanguageTitleOrderByPositionAsc(title.toLowerCase())
     }
 
     @Transactional

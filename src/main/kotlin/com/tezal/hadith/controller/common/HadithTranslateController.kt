@@ -15,7 +15,6 @@ import kotlin.collections.ArrayList
 class HadithTranslateController(val service: HadithTranslateService,
                                 val languageService: LanguageService,
                                 val hadithService: HadithService,
-                                val bookService: BookService,
                                 val sourceService: SourceService,
                                 val categoryService: CategoryService) {
     @GetMapping("findAll")
@@ -46,8 +45,7 @@ class HadithTranslateController(val service: HadithTranslateService,
         val entity = HadithTranslateEntity(
                 dto.title, dto.description,
                 languageService.findById(dto.langId), hadithService.findById(dto.hadithId!!),
-                bookService.findById(dto.bookId), sourceService.findById(dto.sourceId!!)
-        )
+                sourceService.findById(dto.sourceId!!), dto.position)
         entity.categories = dto.categories.map { categoryService.findById(it) }
         return service.create(entity).toDto()
     }
@@ -61,7 +59,7 @@ class HadithTranslateController(val service: HadithTranslateService,
         updateEntity.description = dto.description
         updateEntity.language = languageService.findById(dto.langId)
         updateEntity.hadith = hadithService.findById(dto.hadithId!!)
-        updateEntity.book = bookService.findById(dto.bookId)
+        updateEntity.position = dto.position
         updateEntity.source = sourceService.findById(dto.sourceId!!)
         updateEntity.categories = dto.categories.map { categoryService.findById(it) }
         return service.create(updateEntity).toDto()

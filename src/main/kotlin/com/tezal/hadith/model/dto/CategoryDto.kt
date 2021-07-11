@@ -7,5 +7,7 @@ data class CategoryDto(
         val title: String,
         val status: StatusList?,
         val langId: Long?,
-        val langTitle: String?
+        val langTitle: String?,
+        val position: Int,
+        val bookId: Long?
         )
