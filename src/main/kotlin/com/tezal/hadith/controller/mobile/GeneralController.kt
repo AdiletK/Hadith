@@ -2,6 +2,7 @@ package com.tezal.hadith.controller.mobile
 
 import com.tezal.hadith.extensions.toMobileDto
 import com.tezal.hadith.model.dto.mobile.BookMobileDto
+import com.tezal.hadith.model.dto.mobile.CategoryMobileDto
 import com.tezal.hadith.model.dto.mobile.General
 import com.tezal.hadith.model.dto.mobile.HadithMobileApi
 import com.tezal.hadith.service.common.BookService
@@ -29,17 +30,17 @@ class GeneralController(val bookService: BookService,
     }
 
     @GetMapping("/api/category/findAll/{lang}")
-    fun findAllCategory(@PathVariable lang: String): List<General> {
+    fun findAllCategory(@PathVariable lang: String): List<CategoryMobileDto> {
         return categoryService.findByLangForMobile(lang)
     }
 
     @GetMapping("/api/category/findAll/{lang}/book/{bookId}")
-    fun findAllCategoryByBookId(@PathVariable lang: String, @PathVariable bookId: Long): List<General> {
+    fun findAllCategoryByBookId(@PathVariable lang: String, @PathVariable bookId: Long): List<CategoryMobileDto> {
         return categoryService.findByLangAndByBookId(lang, bookId)
     }
 
     @GetMapping("/api/category/byId/{id}")
-    fun findCategoryById(@PathVariable id: Long): General {
+    fun findCategoryById(@PathVariable id: Long): CategoryMobileDto {
         return categoryService.findById(id).toMobileDto()
     }
 

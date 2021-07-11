@@ -3,6 +3,7 @@ package com.tezal.hadith.extensions
 import com.tezal.hadith.entity.*
 import com.tezal.hadith.model.dto.*
 import com.tezal.hadith.model.dto.mobile.BookMobileDto
+import com.tezal.hadith.model.dto.mobile.CategoryMobileDto
 import com.tezal.hadith.model.dto.mobile.General
 
 
@@ -33,7 +34,7 @@ fun SourceEntity.toDto() = SourceDto(id!!, title, language?.id, language?.title)
 fun SourceEntity.toMobileDto() = General(id!!, title)
 
 fun CategoryEntity.toDto() = CategoryDto(id!!, title, status, language?.id, language?.title, position, book.id)
-fun CategoryEntity.toMobileDto() = General(id!!, title)
+fun CategoryEntity.toMobileDto() = CategoryMobileDto(id!!, book.id!! ,title)
 
 fun HadithTranslateEntity.toDto() = HadithTranslateDto(
         id!!, hadith.id, title, description, language.id!!,
