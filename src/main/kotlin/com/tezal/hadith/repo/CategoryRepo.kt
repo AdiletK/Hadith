@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository
 @Repository
 interface CategoryRepo : JpaRepository<CategoryEntity, Long> {
     fun findAllByLanguageId(id: Long): List<CategoryEntity>
-    fun findAllByLanguageTitle(code: String): List<CategoryEntity>
+    fun findAllByLanguageTitleOrderByPositionAsc(code: String): List<CategoryEntity>
 
     fun findAllByLanguageTitleAndBookIdOrderByPositionAsc(code: String, bookId: Long) : List<CategoryEntity>
 }

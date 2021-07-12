@@ -34,7 +34,7 @@ fun SourceEntity.toDto() = SourceDto(id!!, title, language?.id, language?.title)
 fun SourceEntity.toMobileDto() = General(id!!, title)
 
 fun CategoryEntity.toDto() = CategoryDto(id!!, title, status, language?.id, language?.title, position, book.id)
-fun CategoryEntity.toMobileDto() = CategoryMobileDto(id!!, book.id!! ,title)
+fun CategoryEntity.toMobileDto() = CategoryMobileDto(id!!, book.id!! ,title, position)
 
 fun HadithTranslateEntity.toDto() = HadithTranslateDto(
         id!!, hadith.id, title, description, language.id!!,
