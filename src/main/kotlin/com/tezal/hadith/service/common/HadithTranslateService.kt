@@ -29,7 +29,7 @@ class HadithTranslateService(val repo: HadithTranslateRepo,
             if (it.sourceId != null)
                 entity.source = sourceRepo.getOne(it.sourceId)
 
-            entity.categories = it.categories.map { categoryRepo.getOne(it) }
+            entity.categories = listOf(categoryRepo.getOne(it.categoryId!!))
             if (it.id != null)
                 entity.id = it.id
             repo.save(entity)

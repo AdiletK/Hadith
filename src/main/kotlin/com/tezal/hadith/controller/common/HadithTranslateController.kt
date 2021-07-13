@@ -46,7 +46,7 @@ class HadithTranslateController(val service: HadithTranslateService,
                 dto.title, dto.description,
                 languageService.findById(dto.langId), hadithService.findById(dto.hadithId!!),
                 sourceService.findById(dto.sourceId!!), dto.position)
-        entity.categories = dto.categories.map { categoryService.findById(it) }
+        entity.categories = listOf(categoryService.findById(dto.categoryId!!))
         return service.create(entity).toDto()
     }
 
@@ -61,7 +61,7 @@ class HadithTranslateController(val service: HadithTranslateService,
         updateEntity.hadith = hadithService.findById(dto.hadithId!!)
         updateEntity.position = dto.position
         updateEntity.source = sourceService.findById(dto.sourceId!!)
-        updateEntity.categories = dto.categories.map { categoryService.findById(it) }
+        updateEntity.categories = listOf(categoryService.findById(dto.categoryId!!))
         return service.create(updateEntity).toDto()
     }
 
