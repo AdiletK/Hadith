@@ -38,4 +38,4 @@ fun CategoryEntity.toMobileDto() = CategoryMobileDto(id!!, book.id!!, title, pos
 
 fun HadithTranslateEntity.toDto() = HadithTranslateDto(
         id!!, hadith.id, title, description, language.id!!,
-        language.title, status, source?.id!!, source?.title, categories.first().id, position)
+        language.title, status, source?.id!!, source?.title, categories.first().id, position, categories.first().book.id!!)
