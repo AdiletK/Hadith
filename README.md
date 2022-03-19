@@ -1,5 +1,14 @@
 # Hadith 
 Backend of a social project Hadith. 
+RestFull apis for Mobile and Web fronts.
+
+## Used technologies
+- Spring Boot
+- Spring Data Jpa
+- Spring Security
+- Spring web
+- Postgres
+- Kotlin
 
 ## Requirements
 
